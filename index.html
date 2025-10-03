@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi regalito ♥️</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      text-align: center;
+      color: #333;
+    }
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      max-width: 350px;
+      animation: fadeIn 1s;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      border: none;
+      background: #ff758c;
+      color: white;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button:hover {
+      background: #ff4b5c;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>Hola mi amorcito lindo ♥️</h2>
+    <p id="mensaje">Hoy es día del novio ♥️ y te preparé este pequeño regalito 👀 aunque no tenga mucho dinero, tengo mucho mucho amor para darte ♥️</p>
+    <button onclick="mostrarMensaje()">Ver sorpresa</button>
+  </div>
+
+  <script>
+    const mensajes = [
+      "Te amo con todo mi corazoncito ♥️ 🫂",
+      "Eres mi razón de sonreír cada día ♥️",
+      "Me encantan tus ojitos, tu sonrisa, tus cachetitos ♥️ todo de ti es perfecto para mí.",
+      "Mi billetera está vacía, pero mi corazón rebalsa de amor por ti 😂",
+      "Ojalá no inventen más fechas porque me quedo misia 😂 pero igual siempre tendrás tu regalo mi amor.",
+      "Gracias por cuidarme y quererme tanto 🥺🥺",
+      "Aunque mi yape esté olvidado, mi amor por ti nunca lo estará 😎",
+      "No importa lo que pase, siempre quiero estar contigo, sé que lograremos todo juntos ♥️",
+      "Tenerte es mi regalo más valioso, agradezco mucho a Diosito por darnos otra oportunidad 🥺",
+      "Bueno mi amorcito, se acabaron las sorpresas jeje, pero mi amor por ti nunca se acabará ♥️ Te amo demasiado, mi bb precioso 👀 ♥️"
+    ];
+    let indice = 0;
+
+    function mostrarMensaje() {
+      if (indice < mensajes.length) {
+        document.getElementById("mensaje").innerText = mensajes[indice];
+        indice++;
+      } else {
+        document.getElementById("mensaje").innerText = "Fin del regalito ♥️";
+      }
+    }
+  </script>
+</body>
+</html>
