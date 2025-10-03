@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Para mi amor ♥️</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #a0e7ff, #ccefff); /* celeste claro */
+      text-align: center;
+      color: #333;
+      margin: 0;
+      padding: 50px;
+      overflow-x: hidden;
+    }
+    .card {
+      background: rgba(255,255,255,0.8);
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      max-width: 500px;
+      margin: 20px auto;
+      backdrop-filter: blur(10px);
+      position: relative;
+    }
+    /* Saludo */
+    .card.saludo h1 {
+      font-size: 2.2em;
+      margin-bottom: 15px;
+    }
+    .card.saludo p {
+      font-size: 1.2em;
+      margin: 15px 0;
+    }
+    /* Mensajes */
+    .card.mensaje p {
+      font-size: 1.4em;
+      margin: 15px 0;
+      padding: 20px;
+      border-radius: 15px;
+      color: #333;
+      background: #e0f7ff;
+      transform: translateY(30px) scale(0.8);
+      opacity: 0;
+      transition: all 0.5s ease;
+      position: relative;
+      z-index: 1;
+    }
+    .show {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 30px;
+      background: #66b3ff;
+      color: white;
+      font-size: 1em;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: #3399ff;
+    }
+    /* Corazones flotantes */
+    .heart {
+      position: absolute;
+      font-size: 20px;
+      animation: floatUp 2s ease-out forwards;
+      pointer-events: none;
+    }
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-150px) scale(1.5);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Cuadro de saludo -->
+  <div class="card saludo">
+    <h1>Hola mi amorcito lindo ♥️</h1>
+    <p>Hoy es día del novio ♥️ y te preparé este pequeño regalito 👀 aunque ni tengo mucho dinero, sí tengo mucho mucho amor para darte, espero te guste 🔪😊 (psdt: taba difícil)</p>
+  </div>
+
+  <!-- Cuadro de mensajes -->
+  <div class="card mensaje" id="mensaje-card">
+    <p id="mensaje">Presiona el botón para descubrir las sorpresas... ✨</p>
+    <button onclick="mostrarMensaje()">Sorpresa 💌</button>
+  </div>
+
+  <script>
+    let mensajes = [
+      {text: "Te amo con todo mi corazoncito ♥️ 🫂", color: "#ffe0e0"},
+      {text: "Eres mi razón de sonreír cada día ♥️", color: "#e0ffe0"},
+      {text: "Me encantan esos ojitos que tienes, esa sonrisa 😊, esos cachetitos ♥️... todo todo de ti es perfecto para mí ♥️", color: "#e0e0ff"},
+      {text: "Mi billetera está vacía, pero mi corazón rebalsa de amor por ti ♥️ 😂", color: "#fff0e0"},
+      {text: "Ojalá no inventen más fechas porque me quedo sin plata 😂, pero igual siempre tendrás tu regalo mi amorcito, nunca dejaré que seas espectador 😁", color: "#ffe0ff"},
+      {text: "Gracias por cuidarme y quererme tanto 🥺🥺", color: "#e0ffff"},
+      {text: "Aunque mi Yape esté olvidado, mi amor por ti nunca lo estará 😎", color: "#f0e0ff"},
+      {text: "No importa lo que pase, siempre quiero estar contigo, y sé que afrontaremos cada obstáculo juntos ♥️ y lograremos todo lo que soñamos mi amorcito ♥️", color: "#fff8e0"},
+      {text: "Tenerte a ti es mi regalo más valioso. Agradezco mucho a Diosito por darnos la oportunidad de estar de nuevo juntos 🥺 y ahora para nunca soltarnos ♥️ Tu amor es lo más valioso que tengo ☺️", color: "#e0ffe8"}
+    ];
+    let i = 0;
+
+    function mostrarMensaje() {
+      const mensajeElemento = document.getElementById('mensaje');
+      const mensajeCard = document.getElementById('mensaje-card');
+
+      // Ocultar mensaje antiguo
+      mensajeElemento.classList.remove('show');
+      mensajeElemento.style.transform = "translateY(30px) scale(0.8)";
+      mensajeElemento.style.opacity = 0;
+
+      setTimeout(() => {
+        // Cambiar mensaje y color
+        if (i < mensajes.length) {
+          mensajeElemento.innerText = mensajes[i].text;
+          mensajeElemento.style.background = mensajes[i].color;
+          i++;
+        } else {
+          mensajeElemento.innerText = "Bueno mi amorcito, se acabaron las sorpresas jeje pero mi amor por ti nunca se acabará ♥️ Ten un bonito día mi vida, te amo demasiado mi bb, mi niño lindo, mi papi, mi todo, mi picioso 👀 ♥️ 😂";
+          mensajeElemento.style.background = "#e0f7ff";
+        }
+
+        // Animación tipo “pop” desde abajo
+        setTimeout(() => {
+          mensajeElemento.classList.add('show');
+        }, 50);
+
+        // Crear corazones flotantes
+        for(let j=0; j<5; j++){
+          crearCorazon(mensajeCard);
+        }
+
+      }, 300);
+    }
+
+    function crearCorazon(parent) {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.innerText = "❤️";
+      // Posición aleatoria dentro del card
+      heart.style.left = Math.random() * 80 + 10 + "%";
+      heart.style.fontSize = (Math.random() * 20 + 15) + "px";
+      parent.appendChild(heart);
+      // Eliminar corazón después de animación
+      setTimeout(() => {
+        parent.removeChild(heart);
+      }, 2000);
+    }
+
+    // Mostrar el mensaje inicial con animación
+    window.onload = () => {
+      const mensajeElemento = document.getElementById('mensaje');
+      mensajeElemento.classList.add('show');
+    }
+  </script>
+</body>
+</html>
